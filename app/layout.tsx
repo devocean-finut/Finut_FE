@@ -19,7 +19,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="w-full my-0 mx-auto">
-      <body className={pretendard.className}>{children}</body>
+      <body
+        className={`${pretendard.className} flex min-w-[320px] max-w-[600px] min-h-screen flex-col items-center justify-between`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
