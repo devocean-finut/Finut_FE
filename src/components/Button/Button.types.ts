@@ -1,7 +1,7 @@
 import React from "react";
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  width?: number | "full";
+  width?: string | "full";
   paddingHorizontal?: number;
   paddingVertical?: number;
   borderRadius?: number;

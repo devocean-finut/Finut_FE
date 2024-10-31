@@ -20,7 +20,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const style = {
-    width: width === "full" ? "100%" : `${width}px`,
+    width: width === "full" ? "100%" : width,
     paddingLeft: `${paddingHorizontal}px`,
     paddingRight: `${paddingHorizontal}px`,
     paddingTop: `${paddingVertical}px`,
