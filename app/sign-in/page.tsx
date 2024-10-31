@@ -46,6 +46,11 @@ function Page() {
       >
         이메일로 로그인
       </Button>
+      <div className="flex gap-8 w-full">
+        <Button>회원가입</Button>
+        <Button>아이디 찾기</Button>
+        <Button>비밀번호 찾기</Button>
+      </div>
       <div className="flex flex-col items-center gap-3 my-auto">
         <div className="flex gap-6">
           <NaverButton />
