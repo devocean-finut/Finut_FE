@@ -30,6 +30,10 @@ function Page() {
           },
         }).then((res) => {
           if (res.ok) {
+            localStorage.setItem(
+              "LOGIN_INFO",
+              JSON.stringify({ accessToken: "1234", isFirst: true })
+            );
             router.push("/main");
           } else {
             alert("로그인 실패!");
