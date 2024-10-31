@@ -12,5 +12,10 @@ export function middleware(request: NextRequest) {
     url.pathname = "/sign-in";
     return NextResponse.redirect(url);
   }
+  if (token && currentPath === "/") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/main";
+    return NextResponse.redirect(url);
+  }
   return NextResponse.next();
 }
