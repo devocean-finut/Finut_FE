@@ -28,12 +28,12 @@ const config: Config = {
           40: "#666666",
         },
         red: {
-          primary: "#FF1F1F",
-          secondary: "#FF4545",
+          primary: "#F04452",
+          secondary: "#FFEEEE",
         },
         blue: {
-          primary: "#1976D2",
-          secondary: "#1E88E5",
+          primary: "#3182F6",
+          secondary: "#E8F3FF",
         },
         green: {
           primary: "#43A047",
