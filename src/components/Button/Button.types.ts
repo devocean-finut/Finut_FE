@@ -7,7 +7,19 @@ export interface ButtonProps
   borderRadius?: number;
   fontSize?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   weight?: "normal" | "medium" | "semibold" | "bold";
-  color?: "white" | "black" | "gray-10" | "gray-20" | "gray-30" | "gray-40";
+  color?:
+    | "white"
+    | "black"
+    | "gray-10"
+    | "gray-20"
+    | "gray-30"
+    | "gray-40"
+    | "red-primary"
+    | "red-secondary"
+    | "blue-primary"
+    | "blue-secondary"
+    | "green-primary"
+    | "green-secondary";
   backgroundColor?:
     | "white"
     | "black"
