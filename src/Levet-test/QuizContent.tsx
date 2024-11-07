@@ -34,11 +34,13 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
     setIsDescription(true);
   };
   const handleNextQuiz = () => {
-    nextQuiz();
     setIsCorrect(null);
     setIsDescription(false);
+    console.log(quizNumber, quiz.length);
     if (quizNumber === quiz.length - 1) {
       router.push("/main/level-test/result");
+    } else {
+      nextQuiz();
     }
   };
 
