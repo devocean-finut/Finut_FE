@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { Button } from "../components/Button";
+import Modal from "../components/Modal";
+import { useRouter } from "next/navigation";
 
 export type QuestionType = {
   id: number;
@@ -17,9 +19,12 @@ type QuizContentProps = {
 };
 
 function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
+  const router = useRouter();
   const { id, difficulty, question, answer, description } = quiz[quizNumber];
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [isDescription, setIsDescription] = useState<boolean>(false);
+  const [descriptionModalOpen, setDescriptionModalOpen] =
+    useState<boolean>(false);
   const checkAnswer = (userAnswer: boolean) => {
     if (answer === userAnswer) {
       setIsCorrect(true);
@@ -31,7 +36,16 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
   const handleNextQuiz = () => {
     nextQuiz();
     setIsCorrect(null);
+    setIsDescription(false);
+    if (quizNumber === quiz.length - 1) {
+      router.push("/main/level-test/result");
+    }
   };
+
+  const handleDescriptionModal = () => {
+    setDescriptionModalOpen(!descriptionModalOpen);
+  };
+
   return (
     <>
       <div className="w-5/6 flex flex-col gap-8 pt-[20%]">
@@ -46,12 +60,26 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
                 isCorrect ? "text-blue-primary" : "text-red-primary"
               } text-2xl font-bold text-center`}
             >
-              {isCorrect ? "정답입니다!" : "오답입니다!"}
+              {isCorrect ? (
+                "정답입니다!"
+              ) : (
+                <span>
+                  오답입니다! <br /> 정답은 {answer ? "O" : "X"} 입니다.
+                </span>
+              )}
             </div>
-            <Button>해설보기</Button>
-            <div className="bg-white text-2xl p-4 rounded-lg break-words drop-shadow-sm min-h-[200px] flex justify-center items-center fadeIn">
-              {description}
-            </div>
+            <Button onClick={handleDescriptionModal} className="fadeIn">
+              해설보기
+            </Button>
+            {descriptionModalOpen && (
+              <Modal
+                title="해설"
+                show={descriptionModalOpen}
+                onClose={handleDescriptionModal}
+              >
+                {description}
+              </Modal>
+            )}
           </>
         ) : (
           <div className="w-full flex gap-8">
@@ -82,8 +110,15 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
             </Button>
           </div>
         )}
-        <div className={`${isCorrect !== null ? "" : "invisible"}`}>
-          <Button onClick={handleNextQuiz}>다음</Button>
+        <div className={`${isCorrect !== null ? "" : "hidden"}`}>
+          <Button
+            onClick={handleNextQuiz}
+            backgroundColor="primary"
+            color="white"
+            className="fadeIn"
+          >
+            다음
+          </Button>
         </div>
       </div>
     </>
