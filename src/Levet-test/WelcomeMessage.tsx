@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./WelcomeMessage.module.css";
-import { Button } from "../Button";
+import { Button } from "../components/Button";
 import { useRouter } from "next/navigation";
 
 function WelcomeMessage() {
