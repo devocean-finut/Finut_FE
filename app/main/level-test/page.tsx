@@ -1,9 +1,7 @@
 "use client";
 
-import ProgressBar from "@/src/components/Levet-test/ProgressBar";
-import QuizContent, {
-  QuestionType,
-} from "@/src/components/Levet-test/QuizContent";
+import ProgressBar from "@/src/Levet-test/ProgressBar";
+import QuizContent, { QuestionType } from "@/src/Levet-test/QuizContent";
 import { useEffect, useState } from "react";
 
 function Page() {

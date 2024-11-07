@@ -1,4 +1,4 @@
-import WelcomeMessage from "@/src/components/Levet-test/WelcomeMessage";
+import WelcomeMessage from "@/src/Levet-test/WelcomeMessage";
 import React, { useEffect, useState } from "react";
 
 function Page() {
