@@ -13,9 +13,10 @@ function Page() {
         router.push("/main/level-test/start");
       }
     } catch (error) {
-      console.error("Failed to parse JSON", error);
+      alert("로그인 후 이용해주세요.");
+      router.push("/sign-in");
     }
-  });
+  }, []);
 
   return <div>Page</div>;
 }
