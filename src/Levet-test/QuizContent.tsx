@@ -36,12 +36,9 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
   const handleNextQuiz = () => {
     setIsCorrect(null);
     setIsDescription(false);
-    console.log(quizNumber, quiz.length);
-    if (quizNumber === quiz.length - 1) {
-      router.push("/main/level-test/result");
-    } else {
-      nextQuiz();
-    }
+    nextQuiz();
+    setIsCorrect(null);
+    setIsDescription(false);
   };
 
   const handleDescriptionModal = () => {
