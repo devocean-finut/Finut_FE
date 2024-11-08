@@ -5,7 +5,6 @@ import "./globals.css";
 const pretendard = localFont({
   src: "../public/fonts/Pretendard-Regular.woff2",
   display: "swap",
-  weight: "45 920",
 });
 export const metadata: Metadata = {
   title: "Create Next App",
