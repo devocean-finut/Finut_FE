@@ -1,9 +1,9 @@
 import React from "react";
 
 export interface TextProps extends React.HTMLAttributes<HTMLDivElement> {
-  size: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  weight: "normal" | "medium" | "semibold" | "bold";
-  color:
+  size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+  weight?: "normal" | "medium" | "semibold" | "bold";
+  color?:
     | "white"
     | "black"
     | "character"
