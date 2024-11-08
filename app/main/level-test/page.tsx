@@ -2,9 +2,11 @@
 
 import ProgressBar from "@/src/Levet-test/ProgressBar";
 import QuizContent, { QuestionType } from "@/src/Levet-test/QuizContent";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 function Page() {
+  const router = useRouter();
   const [quizNumber, setQuizNumber] = useState(0);
   const totalQuiz = 3;
   const nextQuiz = () => {
@@ -38,17 +40,34 @@ function Page() {
         "긴축 정책은 통화 공급을 줄여 인플레이션을 억제하고 경기를 둔화시키기 위한 경제 정책이다. 긴축 정책은 통화량을 줄이기 때문에 금리가 오르고, 소비와 투자가 감소하게 된다.",
     },
   ];
+
+  useEffect(() => {
+    if (quizNumber === totalQuiz) {
+      // 결과 페이지로 라우팅을 위한 타이머 설정
+      const timer = setTimeout(() => {
+        router.push("/main/level-test/result"); // 결과 페이지로 라우팅
+      }, 2000);
+
+      return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 클리어
+    }
+  }, [quizNumber, totalQuiz, router]);
   useEffect(() => {
     // quiz fetch하기
   }, []);
   return (
     <main className="h-full flex flex-col justify-center items-center">
-      <ProgressBar current={quizNumber} total={totalQuiz} />
-      <QuizContent
-        quiz={sampleQuiz}
-        quizNumber={quizNumber}
-        nextQuiz={nextQuiz}
-      />
+      {quizNumber === totalQuiz ? (
+        <div>결과를 로딩 중입니다...</div>
+      ) : (
+        <>
+          <ProgressBar current={quizNumber} total={totalQuiz} />
+          <QuizContent
+            quiz={sampleQuiz}
+            quizNumber={quizNumber}
+            nextQuiz={nextQuiz}
+          />
+        </>
+      )}
     </main>
   );
 }
