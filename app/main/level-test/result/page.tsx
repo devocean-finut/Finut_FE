@@ -13,6 +13,22 @@ function Page() {
   const [buttonShow, setButtonShow] = useState(false);
   const [lottiePlay, setLottiePlay] = useState(false);
   const result = "사원";
+
+  useEffect(() => {
+    // 로그인 정보 확인 + 첫 방문 여부 false로 변경
+    // 추후 로직 변경 필요
+    const currentLoginInfo = JSON.parse(
+      localStorage.getItem("LOGIN_INFO") || "{}"
+    );
+    localStorage.setItem(
+      "LOGIN_INFO",
+      JSON.stringify({ ...currentLoginInfo, isFirst: false })
+    );
+  }, []);
+
+  const goToHome = () => {
+    router.push("/main");
+  };
   const messages = [
     <div>피넛님의 레벨은</div>,
     <div>
@@ -26,6 +42,7 @@ function Page() {
       backgroundColor="primary"
       color="white"
       paddingHorizontal={32}
+      onClick={goToHome}
     >
       레벨업하러 가볼까요?
     </Button>,
