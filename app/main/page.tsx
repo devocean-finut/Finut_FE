@@ -3,6 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
+import MainHeader from "@/src/Main/MainHeader";
+import MainCharacter from "@/src/Main/MainCharacter";
+import MainFooter from "@/src/Main/MainFooter";
 
 function Page() {
   const router = useRouter();
@@ -22,7 +25,13 @@ function Page() {
     }
   }, []);
   if (isLoading) return <LoadingSpinner />;
-  return <div>Page</div>;
+  return (
+    <div className="h-full flex flex-col justify-between py-6 px-6">
+      <MainHeader />
+      <MainCharacter />
+      <MainFooter />
+    </div>
+  );
 }
 
 export default Page;
