@@ -12,13 +12,13 @@ function ExpBar({ currentExp = 0, maxExp = 100 }: ExpBarProps) {
 
   return (
     <div className="w-full h-full flex flex-col ">
-      <div className="w-full flex gap-2">
-        <div className="w-full h-6 rounded-full border-2 border-primary overflow-hidden">
+      <div className="w-full flex gap-2 ">
+        <div className="w-full h-6 rounded-full bg-gray-20 drop-shadow-sm overflow-hidden">
           <div
             className="h-full bg-primary flex items-center justify-end pr-2 font-bold"
             style={{
               background:
-                "linear-gradient(to right, #A07E68, #8C6C56, #5F493E)",
+                "linear-gradient(to right, #FFD7B3, #FFC89D, #E0A678)",
               width: `${experiencePercent}%`,
             }}
           ></div>
