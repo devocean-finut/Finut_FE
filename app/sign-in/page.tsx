@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@/src/components/Button";
-import GoogleButton from "@/src/components/Button/GoogleButton";
-import KakaoButton from "@/src/components/Button/KakaoButton";
-import NaverButton from "@/src/components/Button/NaverButton";
-import { Input } from "@/src/components/Input";
+import { Button } from "@/src/Common/Button";
+import GoogleButton from "@/src/Common/Button/GoogleButton";
+import KakaoButton from "@/src/Common/Button/KakaoButton";
+import NaverButton from "@/src/Common/Button/NaverButton";
+import { Input } from "@/src/Common/Input";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

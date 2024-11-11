@@ -1,8 +1,8 @@
 // O X 문자 수정 필요
 
 import React, { useState } from "react";
-import { Button } from "../components/Button";
-import Modal from "../components/Modal";
+import { Button } from "../Common/Button";
+import Modal from "../Common/Modal";
 import { useRouter } from "next/navigation";
 
 export type QuestionType = {

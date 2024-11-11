@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie-player";
 import CongratulationLottie from "@/public/lottie/Congratulation.json";
-import { Button } from "@/src/components/Button";
+import { Button } from "@/src/Common/Button";
 
 function Page() {
   // 결과 가져오기

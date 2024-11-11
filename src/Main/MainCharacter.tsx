@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../components/Button";
+import { Button } from "../Common/Button";
 import ShopIcon from "./Icon/Shop";
 
 function MainCharacter() {

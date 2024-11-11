@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import LoadingSpinner from "@/src/components/LoadingSpinner";
+import LoadingSpinner from "@/src/Common/LoadingSpinner";
 import MainHeader from "@/src/Main/MainHeader";
 import MainCharacter from "@/src/Main/MainCharacter";
 import MainFooter from "@/src/Main/MainFooter";
