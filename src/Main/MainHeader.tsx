@@ -1,10 +1,10 @@
 import React from "react";
 import { Button } from "../Common/Button";
 import Image from "next/image";
-import Attendance from "./Icon/Attendance.png";
-import Quiz from "./Icon/Quiz.png";
-import News from "./Icon/News.png";
-import Store from "./Icon/Store.png";
+import Attendance from "./Image/Attendance.png";
+import Quiz from "./Image/Quiz.png";
+import News from "./Image/News.png";
+import Store from "./Image/Store.png";
 import HeaderButton from "./components/HeaderButton";
 
 function MainHeader() {
