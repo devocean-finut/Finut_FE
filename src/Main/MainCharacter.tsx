@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../Common/Button";
-import ShopIcon from "./Icon/Shop";
+import ShopIcon from "./Image/Shop";
 
 function MainCharacter() {
   return (

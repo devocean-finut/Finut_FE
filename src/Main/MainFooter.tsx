@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import CoinIcon from "./Icon/Coin";
-import ExpIcon from "./Icon/Exp";
+import CoinIcon from "./Image/Coin";
+import ExpIcon from "./Image/Exp";
 import ExpBar from "./components/ExpBar";
 
 function MainFooter() {
