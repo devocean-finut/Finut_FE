@@ -21,6 +21,7 @@ export interface ButtonProps
     | "green-primary"
     | "green-secondary";
   backgroundColor?:
+    | "none"
     | "white"
     | "black"
     | "gray-10"
@@ -39,6 +40,7 @@ export interface ButtonProps
     | "modal-background";
   borderWidth?: number;
   borderColor?:
+    | "none"
     | "white"
     | "black"
     | "gray-10"
