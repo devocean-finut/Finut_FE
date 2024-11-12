@@ -26,7 +26,8 @@ function ExpBar({ currentExp = 0, maxExp = 100 }: ExpBarProps) {
         <div className="font-medium">{experiencePercent}%</div>
       </div>
       <div className="w-full flex justify-end gap-1 text-sm pt-2 ">
-        승진까지 <span className="font-bold">{maxExp - currentExp} XP</span>
+        <span className="font-bold text-primary">사원</span> 승진까지{" "}
+        <span className="font-bold">{maxExp - currentExp} XP</span>
       </div>
     </div>
   );
