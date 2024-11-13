@@ -9,7 +9,7 @@ type NewsHeaderProps = {
 
 function NewsHeader({ currentType, onSelectType }: NewsHeaderProps) {
   return (
-    <div className="flex justify-center gap-4 py-4">
+    <div className="flex justify-center gap-4">
       {newsType.map((type) => (
         <Button
           backgroundColor="none"
