@@ -55,7 +55,7 @@ function Page() {
     // quiz fetch하기
   }, []);
   return (
-    <main className="h-full flex flex-col justify-center items-center">
+    <main className="w-full h-full flex flex-col justify-center items-center">
       {quizNumber === totalQuiz ? (
         <div>결과를 로딩 중입니다...</div>
       ) : (
