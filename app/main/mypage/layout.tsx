@@ -5,7 +5,7 @@ function MyPageLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <TopBar />
-      <main className="px-6">{children}</main>
+      <main className="p-6 pt-0">{children}</main>
     </>
   );
 }
