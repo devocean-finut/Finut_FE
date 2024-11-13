@@ -26,7 +26,7 @@ function Page() {
   }, []);
   if (isLoading) return <LoadingSpinner />;
   return (
-    <div className="h-full flex flex-col justify-between py-6 px-6">
+    <div className="h-full flex flex-col justify-between">
       <MainHeader />
       <MainCharacter />
       <MainFooter />
