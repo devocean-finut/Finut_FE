@@ -7,7 +7,7 @@ type ProgressBarProps = {
 
 function ProgressBar({ current, total }: ProgressBarProps) {
   return (
-    <div className="w-5/6 h-4 bg-gray-300 rounded-full">
+    <div className="w-full h-4 bg-gray-300 rounded-full">
       <div
         className="h-full bg-primary rounded-lg"
         style={{ width: `${(current / total) * 100}%` }}

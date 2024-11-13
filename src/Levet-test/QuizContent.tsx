@@ -47,7 +47,7 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
 
   return (
     <>
-      <div className="w-5/6 flex flex-col gap-8 pt-[20%]">
+      <div className="w-full flex flex-col gap-8 pt-[20%]">
         <div className="bg-white text-2xl p-4 rounded-lg break-words drop-shadow-sm min-h-[200px] flex justify-center items-center">
           {question}
         </div>
