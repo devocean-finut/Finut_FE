@@ -11,7 +11,7 @@ function TopBar() {
     router.back();
   };
   return (
-    <div className="p-6 pb-0 ">
+    <div>
       <Button
         backgroundColor="none"
         paddingHorizontal={0}
