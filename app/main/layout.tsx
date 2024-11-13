@@ -2,7 +2,7 @@ import React from "react";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-background max-w-[600px] w-screen h-screen overflow-y-scroll">
+    <div className="bg-background max-w-[600px] w-screen h-screen overflow-y-scroll px-6">
       {children}
     </div>
   );
