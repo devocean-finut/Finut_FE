@@ -29,3 +29,18 @@
     transform: translateY(0px);
   }
 }
+
+.shine {
+  animation: shimmer 1s infinite alternate;
+}
+
+@keyframes shimmer {
+  50% {
+    scale: 1.02;
+    opacity: 0.8;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
