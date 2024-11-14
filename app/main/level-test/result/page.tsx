@@ -37,7 +37,7 @@ function Page() {
     <Button
       width="auto"
       className="mt-8"
-      weight="bold"
+      weight="medium"
       fontSize="2xl"
       backgroundColor="primary"
       color="white"
