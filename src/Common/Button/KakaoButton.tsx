@@ -2,7 +2,7 @@ import React from "react";
 
 function KakaoButton() {
   return (
-    <button>
+    <>
       <svg
         width="60"
         height="60"
@@ -18,7 +18,7 @@ function KakaoButton() {
           fill="black"
         />
       </svg>
-    </button>
+    </>
   );
 }
 
