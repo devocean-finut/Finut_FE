@@ -100,7 +100,17 @@ function Page() {
           >
             <KakaoButton />
           </Button>
-          <GoogleButton />
+          <Button
+            paddingHorizontal={0}
+            paddingVertical={0}
+            onClick={() => {
+              router.push(
+                "http://ec2-15-165-175-91.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google"
+              );
+            }}
+          >
+            <GoogleButton />
+          </Button>
         </div>
         <div>
           <Button
