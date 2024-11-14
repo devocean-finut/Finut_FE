@@ -4,6 +4,8 @@ import ProgressBar from "@/src/Levet-test/ProgressBar";
 import QuizContent, { QuestionType } from "@/src/Levet-test/QuizContent";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Lottie from "react-lottie-player";
+import Analyzing from "@/public/lottie/Analyzing.json";
 
 function Page() {
   const router = useRouter();
@@ -57,7 +59,12 @@ function Page() {
   return (
     <main className="w-full h-full flex flex-col justify-center items-center">
       {quizNumber === totalQuiz ? (
-        <div>결과를 로딩 중입니다...</div>
+        <>
+          <Lottie animationData={Analyzing} loop play />
+          <div className="font-medium text-2xl">
+            레벨 테스트 결과 분석 중...
+          </div>
+        </>
       ) : (
         <>
           <ProgressBar current={quizNumber} total={totalQuiz} />
