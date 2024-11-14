@@ -5,17 +5,22 @@ const protectedRoutes = ["/main", "/"]; // 로그인 정보가 있어야만 접�
 const publicRoutes = ["/sign-in", "/sign-up"];
 
 export function middleware(request: NextRequest) {
-  const token = request.cookies.get("accessToken");
+  // const token = request.cookies.get("accessToken");
   const currentPath = request.nextUrl.pathname;
-  if (!token && protectedRoutes.includes(currentPath)) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/sign-in";
-    return NextResponse.redirect(url);
-  }
-  if (token && currentPath === "/") {
+  if (currentPath === "/") {
     const url = request.nextUrl.clone();
     url.pathname = "/main";
     return NextResponse.redirect(url);
   }
+  // if (!token && protectedRoutes.includes(currentPath)) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/sign-in";
+  //   return NextResponse.redirect(url);
+  // }
+  // if (token && currentPath === "/") {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/main";
+  //   return NextResponse.redirect(url);
+  // }
   return NextResponse.next();
 }
