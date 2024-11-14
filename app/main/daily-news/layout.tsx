@@ -3,7 +3,7 @@ import React from "react";
 
 function NewsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="w-full h-full">
       <TopBar />
       {children}
     </div>
