@@ -2,7 +2,7 @@ import React from "react";
 
 function GoogleButton() {
   return (
-    <button>
+    <>
       <svg
         width="60"
         height="60"
@@ -52,7 +52,7 @@ function GoogleButton() {
           fill="#EA4335"
         />
       </svg>
-    </button>
+    </>
   );
 }
 
