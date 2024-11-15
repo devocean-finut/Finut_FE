@@ -15,7 +15,10 @@ function ExpBar({
 }: ExpBarProps) {
   const [experience, setExperience] = useState<number>(0); // 경험치 상태와 타입 정의
 
-  const experiencePercent = ((currentExp / maxExp) * 100).toFixed(2);
+  const experiencePercent = (
+    (Math.min(currentExp, maxExp) / maxExp) *
+    100
+  ).toFixed(2);
 
   return (
     <div className="w-full h-full flex flex-col ">
@@ -33,7 +36,7 @@ function ExpBar({
         </div>
         <div className="font-medium">{experiencePercent}%</div>
       </div>
-      {currentExp === 100 ? (
+      {currentExp >= 100 ? (
         <div className="w-full flex justify-between items-center mt-4 text-sm">
           <span>경험치가 다 찼습니다!</span>
           <Button
