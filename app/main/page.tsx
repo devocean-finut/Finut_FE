@@ -12,6 +12,7 @@ function Page() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
   const accessToken = searchParams.get("accessToken");
+
   if (email && accessToken) {
     localStorage.setItem("LOGIN_INFO", JSON.stringify({ email, accessToken }));
     router.push("/main");
