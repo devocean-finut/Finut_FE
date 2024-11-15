@@ -5,6 +5,7 @@ import GoogleButton from "@/src/Common/Button/GoogleButton";
 import KakaoButton from "@/src/Common/Button/KakaoButton";
 import NaverButton from "@/src/Common/Button/NaverButton";
 import { Input } from "@/src/Common/Input";
+import { API_BASE_URL } from "@/src/Constant/constant";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -92,11 +93,11 @@ function Page() {
           <Button
             paddingHorizontal={0}
             paddingVertical={0}
-            onClick={() => {
-              router.push(
-                "http://ec2-15-165-175-91.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao"
-              );
-            }}
+            // onClick={() => {
+            //   router.push(
+            //     "http://ec2-15-165-175-91.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao"
+            //   );
+            // }}
           >
             <KakaoButton />
           </Button>
@@ -104,9 +105,7 @@ function Page() {
             paddingHorizontal={0}
             paddingVertical={0}
             onClick={() => {
-              router.push(
-                "http://ec2-15-165-175-91.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google"
-              );
+              router.push(`${API_BASE_URL}/oauth2/authorization/google`);
             }}
           >
             <GoogleButton />
