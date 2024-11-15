@@ -184,17 +184,19 @@ function TFQuiz({ quiz, currentXP }: QuizContentProps) {
             onClose={handlePromoteModal}
           >
             <div className="relative">
-              <Lottie
-                className="w-full h-[100px] absolute top-0 left-0"
-                loop={false}
-                animationData={CongratulationLottie}
-                play={true}
-              />
-              <div className="text-md ">승진할 수 있는 퀴즈가 도착했어요!</div>
+              <div className="text-md mb-4 relative">
+                승진할 수 있는 퀴즈가 도착했어요!
+                <Lottie
+                  className="w-full aspect-square absolute top-0 left-0"
+                  loop={false}
+                  animationData={CongratulationLottie}
+                  play={true}
+                />
+              </div>
               <Button
                 backgroundColor="primary"
                 color="white"
-                onClick={() => router.push("/level-test/start")}
+                onClick={() => router.push("/main/level-test/start")}
                 className="fadeIn"
               >
                 승진 시험 보기
