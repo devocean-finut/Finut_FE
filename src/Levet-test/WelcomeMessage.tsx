@@ -10,7 +10,7 @@ function WelcomeMessage() {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [buttonShow, setButtonShow] = useState(false);
   const messages = [
-    "첫 방문을 진심으로 환영합니다!",
+    // "첫 방문을 진심으로 환영합니다!",
     `레벨 테스트를 통해 \n여러분의 경제 실력을 확인해보세요.`,
   ];
 
