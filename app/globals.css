@@ -44,3 +44,17 @@
     opacity: 1;
   }
 }
+
+.bounce {
+  animation: bounce-small 1s 10 alternate-reverse;
+}
+
+@keyframes bounce-small {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+    scale: 1.05;
+  }
+}
