@@ -20,7 +20,10 @@ function MyPageButtonGroup() {
         color="white"
         className=" drop-shadow-md"
       >
-        <span className="flex justify-between animate-pulse">
+        <span
+          className="flex justify-between animate-pulse"
+          onClick={() => router.push("/main/quiz")}
+        >
           <span className="w-6"></span>
           퀴즈 풀고 경험치 얻기{" "}
           <span>

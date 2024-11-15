@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import CoinIcon from "../Main/Image/Coin";
 import ExpBar from "../Main/components/ExpBar";
+import Character from "../Main/Image/Character.png";
 
 type UserData = {
   userId: number;
@@ -24,9 +25,12 @@ function MyPageUserInfo({ userData }: MyPageUserInfoProps) {
   return (
     <>
       <div className="w-full flex flex-col gap-4 items-center bg-white rounded-xl shadow-md p-4">
-        <div className="w-1/2 aspect-square relative bg-gray-20 rounded-full overflow-hidden">
-          <Image src={picture && picture} alt={name + ".png"} layout="fill" />
+        <div className="max-w-[200px] w-full min-w-[200px] aspect-square relative mb-2">
+          <Image src={Character} alt="캐릭터.png" layout="fill" />
         </div>
+        {/* <div className="w-1/2 aspect-square relative bg-gray-20 rounded-full overflow-hidden">
+          <Image src={picture && picture} alt={name + ".png"} layout="fill" />
+        </div> */}
         <div className="flex flex-col items-center gap-1">
           <div className="font-bold text-3xl">{name}</div>
           <div className="font-medium text-xl text-primary">{levelName}</div>

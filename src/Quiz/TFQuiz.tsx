@@ -30,6 +30,7 @@ function TFQuiz({ quiz, currentXP }: QuizContentProps) {
     useState<boolean>(false);
   const [promoteModalOpen, setPromoteModalOpen] = useState<boolean>(false);
   const checkAnswer = (userAnswer: "TRUE" | "FALSE") => {
+    console.log(userAnswer, answer);
     const LOGIN_INFO =
       localStorage.getItem("LOGIN_INFO") || router.push("/sign-in");
     if (LOGIN_INFO) {
