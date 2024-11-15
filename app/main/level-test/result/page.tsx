@@ -5,6 +5,9 @@ import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie-player";
 import CongratulationLottie from "@/public/lottie/Congratulation.json";
 import { Button } from "@/src/Common/Button";
+import { decode } from "js-base64";
+import { API_BASE_URL } from "@/src/Constant/constant";
+import { UserData } from "../../mypage/page";
 
 function Page() {
   // 결과 가져오기
@@ -12,10 +15,38 @@ function Page() {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [buttonShow, setButtonShow] = useState(false);
   const [lottiePlay, setLottiePlay] = useState(false);
-  const result = "사원";
+  const [userInfo, setUserInfo] = useState<UserData>({
+    userId: 0,
+    name: "",
+    money: 0,
+    picture: "",
+    xp: 0,
+    levelName: "",
+  });
 
   useEffect(() => {
-    // 로그인 정보 확인 + 첫 방문 여부 false로 변경
+    // 로그인 정보 확인
+    const LOGIN_INFO =
+      localStorage.getItem("LOGIN_INFO") || router.push("/sign-in");
+    if (LOGIN_INFO) {
+      const accessToken = decode(JSON.parse(LOGIN_INFO).accessToken);
+      fetch(`${API_BASE_URL}/user/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code === "COMMON200") {
+            console.log(data);
+            setUserInfo(data.result);
+          } else if (data.code === "COMMON500") {
+            alert("로그인 후 이용해주세요.");
+            router.push("/sign-in");
+          }
+        });
+    }
     // 추후 로직 변경 필요
     const currentLoginInfo = JSON.parse(
       localStorage.getItem("LOGIN_INFO") || "{}"
@@ -30,9 +61,10 @@ function Page() {
     router.push("/main");
   };
   const messages = [
-    <div>피넛님의 레벨은</div>,
+    <div>{userInfo.name}님의 레벨은</div>,
     <div>
-      <span className="font-extrabold text-primary">{result}</span>입니다
+      <span className="font-extrabold text-primary">{userInfo.levelName}</span>
+      입니다
     </div>,
     <Button
       width="auto"
@@ -44,7 +76,7 @@ function Page() {
       paddingHorizontal={32}
       onClick={goToHome}
     >
-      레벨업하러 가볼까요?
+      홈으로
     </Button>,
   ];
 
