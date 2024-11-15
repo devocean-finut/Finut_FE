@@ -19,7 +19,11 @@ export interface ButtonProps
     | "blue-primary"
     | "blue-secondary"
     | "green-primary"
-    | "green-secondary";
+    | "green-secondary"
+    | "character"
+    | "primary"
+    | "background"
+    | "modal-background";
   backgroundColor?:
     | "none"
     | "white"
