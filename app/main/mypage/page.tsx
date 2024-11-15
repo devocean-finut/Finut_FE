@@ -6,7 +6,15 @@ import MyPageUserInfo from "@/src/My-Page/UserInfo";
 import { decode } from "js-base64";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { UserData } from "@/src/Main/MainCharacter";
+
+type UserData = {
+  userId: number;
+  name: string;
+  money: number;
+  picture: string;
+  xp: number;
+  levelName: string;
+};
 
 function Page() {
   const router = useRouter();
