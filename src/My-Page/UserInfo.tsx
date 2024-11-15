@@ -20,11 +20,12 @@ type MyPageUserInfoProps = {
 
 function MyPageUserInfo({ userData }: MyPageUserInfoProps) {
   const { name, money, picture, xp, levelName } = userData;
+
   return (
     <>
       <div className="w-full flex flex-col gap-4 items-center bg-white rounded-xl shadow-md p-4">
         <div className="w-1/2 aspect-square relative bg-gray-20 rounded-full overflow-hidden">
-          <Image src={picture} alt={name + ".png"} layout="fill" />
+          <Image src={picture && picture} alt={name + ".png"} layout="fill" />
         </div>
         <div className="flex flex-col items-center gap-1">
           <div className="font-bold text-3xl">{name}</div>
