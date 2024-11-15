@@ -1,12 +1,18 @@
 import { Button } from "@/src/Common/Button";
+import { levelNames } from "@/src/Constant/constant";
 import React, { useState } from "react";
 
 type ExpBarProps = {
   currentExp: number;
   maxExp: number;
+  levelName?: string;
 };
 
-function ExpBar({ currentExp = 0, maxExp = 100 }: ExpBarProps) {
+function ExpBar({
+  currentExp = 0,
+  maxExp = 100,
+  levelName = "아르바이트",
+}: ExpBarProps) {
   const [experience, setExperience] = useState<number>(0); // 경험치 상태와 타입 정의
 
   const experiencePercent = ((currentExp / maxExp) * 100).toFixed(2);
@@ -16,7 +22,10 @@ function ExpBar({ currentExp = 0, maxExp = 100 }: ExpBarProps) {
       <div className="w-full flex gap-2 ">
         <div className="w-full h-6 rounded-full bg-gray-20 drop-shadow-sm overflow-hidden">
           <div
-            className={` h-full flex items-center justify-end pr-2 font-bold bg-gradient-to-r from-[#FFD7B3] via-[#FFC89D] to-[#E0A678]`}
+            className={`h-full flex items-center justify-end pr-2 font-bold ${
+              currentExp > 0 &&
+              "bg-gradient-to-r from-[#FFD7B3] via-[#FFC89D] to-[#E0A678]"
+            }`}
             style={{
               width: `${experiencePercent}%`,
             }}
@@ -41,8 +50,17 @@ function ExpBar({ currentExp = 0, maxExp = 100 }: ExpBarProps) {
         </div>
       ) : (
         <div className="w-full flex justify-end gap-1 text-sm pt-2 ">
-          <span className="font-bold text-primary">사원</span> 승진까지{" "}
-          <span className="font-bold">{maxExp - currentExp} XP</span>
+          <span className="font-bold text-primary">
+            {
+              levelNames[
+                Math.min(
+                  levelNames.indexOf(levelName) + 1,
+                  levelNames.length - 1
+                )
+              ]
+            }
+          </span>{" "}
+          승진까지 <span className="font-bold">{maxExp - currentExp} XP</span>
         </div>
       )}
     </div>
