@@ -9,6 +9,10 @@ function MyPageButtonGroup() {
   const handleRouter = (link: string) => {
     router.push(link);
   };
+  const handleLogout = () => {
+    localStorage.removeItem("LOGIN_INFO");
+    router.push("/sign-in");
+  };
   return (
     <div className="w-full flex flex-col items-center gap-4">
       <Button
@@ -33,7 +37,9 @@ function MyPageButtonGroup() {
           오늘의 뉴스
         </Button>
       </div>
-      <Button className="drop-shadow-md">로그아웃</Button>
+      <Button className="drop-shadow-md" onClick={handleLogout}>
+        로그아웃
+      </Button>
     </div>
   );
 }
