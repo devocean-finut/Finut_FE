@@ -58,7 +58,12 @@ function MainFooter() {
         <CoinIcon /> {userData.money.toLocaleString("en-US")}
       </div>
       <div className="w-full flex gap-2 items-start">
-        <ExpIcon /> <ExpBar currentExp={userData.xp} maxExp={100} />
+        <ExpIcon />{" "}
+        <ExpBar
+          currentExp={userData.xp}
+          maxExp={100}
+          levelName={userData.levelName}
+        />
       </div>
     </footer>
   );

@@ -7,7 +7,7 @@ import { decode } from "js-base64";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-type UserData = {
+export type UserData = {
   userId: number;
   name: string;
   money: number;

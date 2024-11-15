@@ -1,5 +1,6 @@
 import { Button } from "@/src/Common/Button";
 import { levelNames } from "@/src/Constant/constant";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type ExpBarProps = {
@@ -13,6 +14,7 @@ function ExpBar({
   maxExp = 100,
   levelName = "아르바이트",
 }: ExpBarProps) {
+  const router = useRouter();
   const [experience, setExperience] = useState<number>(0); // 경험치 상태와 타입 정의
 
   const experiencePercent = (
@@ -47,6 +49,9 @@ function ExpBar({
             color="black"
             className="shine"
             fontSize="sm"
+            onClick={() => {
+              router.push("/main/level-test/start");
+            }}
           >
             승진 시험 보기
           </Button>

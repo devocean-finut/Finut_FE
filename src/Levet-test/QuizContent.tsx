@@ -4,14 +4,8 @@ import React, { useState } from "react";
 import { Button } from "../Common/Button";
 import Modal from "../Common/Modal";
 import { useRouter } from "next/navigation";
+import { QuestionType } from "@/app/main/level-test/page";
 
-export type QuestionType = {
-  id: number;
-  difficulty: "HI" | "MI" | "LO";
-  question: string;
-  answer: boolean;
-  description: string;
-};
 type QuizContentProps = {
   quiz: QuestionType[];
   quizNumber: number;
@@ -20,13 +14,23 @@ type QuizContentProps = {
 
 function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
   const router = useRouter();
-  const { id, difficulty, question, answer, description } = quiz[quizNumber];
+  const {
+    id,
+    quest,
+    question,
+    option1,
+    option2,
+    option3,
+    correctOption,
+    description,
+  } = quiz[quizNumber];
+  const options = [option1, option2, option3];
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [isDescription, setIsDescription] = useState<boolean>(false);
   const [descriptionModalOpen, setDescriptionModalOpen] =
     useState<boolean>(false);
-  const checkAnswer = (userAnswer: boolean) => {
-    if (answer === userAnswer) {
+  const checkAnswer = (answer: number) => {
+    if (answer === correctOption) {
       setIsCorrect(true);
     } else {
       setIsCorrect(false);
@@ -48,7 +52,7 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
   return (
     <>
       <div className="w-full flex flex-col gap-8 pt-[20%]">
-        <div className="bg-white text-2xl p-4 rounded-lg break-words drop-shadow-sm min-h-[200px] flex justify-center items-center">
+        <div className="bg-white text-2xl font-semibold p-4 rounded-lg break-words drop-shadow-sm min-h-[200px] flex justify-center items-center">
           {question}
         </div>
 
@@ -57,13 +61,23 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
             <div
               className={`${
                 isCorrect ? "text-blue-primary" : "text-red-primary"
-              } text-2xl font-bold text-center`}
+              } text-xl font-medium text-center`}
             >
               {isCorrect ? (
-                "정답입니다!"
+                <span>
+                  정답입니다!
+                  <br />
+                  <span style={{ wordBreak: "break-word", marginTop: "12px" }}>
+                    {options[correctOption - 1]}
+                  </span>
+                </span>
               ) : (
                 <span>
-                  오답입니다! <br /> 정답은 {answer ? "O" : "X"} 입니다.
+                  오답입니다! <br /> 정답은 {correctOption}번 입니다
+                  <br />
+                  <span style={{ wordBreak: "break-word", marginTop: "12px" }}>
+                    {options[correctOption - 1]}
+                  </span>
                 </span>
               )}
             </div>
@@ -81,32 +95,23 @@ function QuizContent({ quiz, quizNumber, nextQuiz }: QuizContentProps) {
             )}
           </>
         ) : (
-          <div className="w-full flex gap-8">
-            <Button
-              width="100%"
-              backgroundColor="blue-secondary"
-              color="blue-primary"
-              fontSize="2xl"
-              weight="bold"
-              borderRadius={16}
-              className="drop-shadow-sm flex flex-col items-center"
-              onClick={() => checkAnswer(true)}
-            >
-              <span className="text-3xl">O</span>
-              <span>그렇다</span>
-            </Button>
-            <Button
-              width="100%"
-              backgroundColor="red-secondary"
-              color="red-primary"
-              fontSize="2xl"
-              weight="bold"
-              className="drop-shadow-sm flex flex-col items-center"
-              borderRadius={16}
-              onClick={() => checkAnswer(false)}
-            >
-              <span className="text-3xl">X</span> <span>아니다</span>
-            </Button>
+          <div className="flex flex-col gap-4">
+            {options.map((option, index) => {
+              return (
+                <Button
+                  width="100%"
+                  backgroundColor="white"
+                  color="primary"
+                  fontSize="xl"
+                  weight="medium"
+                  borderRadius={16}
+                  className="drop-shadow-sm flex flex-col items-center break-words"
+                  onClick={() => checkAnswer(index + 1)}
+                >
+                  <span>{option}</span>
+                </Button>
+              );
+            })}
           </div>
         )}
         <div className={`${isCorrect !== null ? "" : "hidden"}`}>
