@@ -38,7 +38,9 @@ function MyPageUserInfo({ userData }: MyPageUserInfoProps) {
         <div>
           <div className="text-lg mb-1 ">
             다음 승진까지{" "}
-            <span className="font-bold text-primary pr-1">{100 - xp} XP</span>
+            <span className="font-bold text-primary pr-1">
+              {Math.max(100 - xp, 0)} XP
+            </span>
             남았습니다
           </div>
         </div>

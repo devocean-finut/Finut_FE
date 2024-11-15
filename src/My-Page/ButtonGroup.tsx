@@ -22,7 +22,7 @@ function MyPageButtonGroup() {
       >
         <span className="flex justify-between animate-pulse">
           <span className="w-6"></span>
-          퀴즈 풀고 승진하러 가기{" "}
+          퀴즈 풀고 경험치 얻기{" "}
           <span>
             <ChevronRight fill="white" />
           </span>
