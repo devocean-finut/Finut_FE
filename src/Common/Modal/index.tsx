@@ -23,11 +23,11 @@ function Modal({ show, onClose, title, children, footer }: ModalProps) {
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 "
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-lg max-w-md w-5/6 p-6 relative fadeIn"
+        className="max-h-[60%] overflow-scroll bg-white rounded-lg shadow-lg max-w-md w-5/6 p-6 relative fadeIn"
         onClick={(e) => e.stopPropagation()} // 모달 외부 클릭으로 닫기 방지
       >
         {title && (

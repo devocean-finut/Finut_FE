@@ -6,20 +6,22 @@ import Modal from "../Common/Modal";
 import { useRouter } from "next/navigation";
 import CongratulationLottie from "@/public/lottie/Congratulation.json";
 import Lottie from "react-lottie-player";
+import { QuizData } from "@/app/main/quiz/page";
 
-export type QuestionType = {
-  id: number;
-  difficulty: "HI" | "MI" | "LO";
-  question: string;
-  answer: "TRUE" | "FALSE";
-  description: string;
-  quizDoneList: number[];
-};
+import { decode } from "js-base64";
+import { API_BASE_URL } from "../Constant/constant";
+
 type QuizContentProps = {
-  quiz: QuestionType;
+  quiz: QuizData;
+  currentXP: number;
+};
+const difficultyKO = {
+  LO: "쉬움",
+  MI: "보통",
+  HI: "어려움",
 };
 
-function TFQuiz({ quiz }: QuizContentProps) {
+function TFQuiz({ quiz, currentXP }: QuizContentProps) {
   const router = useRouter();
   const { id, difficulty, question, answer, description } = quiz;
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -28,17 +30,51 @@ function TFQuiz({ quiz }: QuizContentProps) {
     useState<boolean>(false);
   const [promoteModalOpen, setPromoteModalOpen] = useState<boolean>(false);
   const checkAnswer = (userAnswer: "TRUE" | "FALSE") => {
-    if (answer === userAnswer) {
-      setIsCorrect(true);
-      // 서버에 해당 퀴즈 정답이라고 전달
-
-      // 100 xp에 도달하면 승진 퀴즈 알림
-      setTimeout(() => {
-        setPromoteModalOpen(true);
-      }, 1000);
-    } else {
-      // 서버에 해당 퀴즈 오답이라고 전달
-      setIsCorrect(false);
+    const LOGIN_INFO =
+      localStorage.getItem("LOGIN_INFO") || router.push("/sign-in");
+    if (LOGIN_INFO) {
+      if (answer === userAnswer) {
+        setIsCorrect(true);
+        // 서버에 해당 퀴즈 정답이라고 전달
+        const accessToken = decode(JSON.parse(LOGIN_INFO).accessToken);
+        fetch(`${API_BASE_URL}/quiz/correct/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.code === "COMMON200") {
+              // 100 xp에 도달하면 승진 퀴즈 알림
+              if (currentXP + data.result.xp >= 100) {
+                setTimeout(() => {
+                  setPromoteModalOpen(true);
+                }, 1000);
+              }
+            } else if (data.code === "COMMON500") {
+              alert("로그인 후 이용해주세요.");
+              router.push("/sign-in");
+            }
+          });
+      } else {
+        // 서버에 해당 퀴즈 오답이라고 전달
+        setIsCorrect(false);
+        const accessToken = decode(JSON.parse(LOGIN_INFO).accessToken);
+        fetch(`${API_BASE_URL}/quiz/wrong/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.code === "COMMON500") {
+              alert("로그인 후 이용해주세요.");
+              router.push("/sign-in");
+            }
+          });
+      }
     }
     setIsDescription(true);
   };
@@ -52,11 +88,30 @@ function TFQuiz({ quiz }: QuizContentProps) {
 
   return (
     <>
-      <div className="w-full flex flex-col gap-8">
-        <div className="bg-white text-2xl p-4 rounded-lg break-words drop-shadow-sm min-h-[200px] flex justify-center items-center">
-          {question}
+      <div className="w-full flex flex-col items-center gap-8">
+        <h1 className="text-2xl font-semibold">퀴즈</h1>
+        <div className="w-full flex flex-col gap-2 justify-center items-center bg-white text-2xl p-4 rounded-lg break-words drop-shadow-sm min-h-[200px] ">
+          <div className="w-full flex justify-start">
+            <div className="w-fit">
+              <Button
+                paddingHorizontal={8}
+                paddingVertical={0}
+                disabled={true}
+                backgroundColor="primary"
+                color="white"
+              >
+                {difficultyKO[difficulty]}
+              </Button>
+            </div>
+          </div>
+          <div className="break-words">
+            {question.length === 0 ? (
+              <span className="shine">퀴즈 불러오는 중...</span>
+            ) : (
+              question
+            )}
+          </div>
         </div>
-
         {isDescription ? (
           <>
             <div
