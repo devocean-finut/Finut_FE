@@ -18,18 +18,10 @@ function NewsPreview({ news }: NewsPreviewProps) {
   return (
     <Link href={`/main/daily-news/${encode(link)}`}>
       <div className="flex gap-4 bg-white rounded-lg shadow-md p-4">
-        <div className="w-1/3 aspect-square relative rounded-lg overflow-hidden">
-          <Image
-            src={imageUrl}
-            alt="news"
-            fill={true}
-            unoptimized={true}
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="flex flex-col max-w-[66%] gap-2">
+        {/* <div className="w-1/3 aspect-square relative rounded-lg overflow-hidden">
+          <Image src={imageUrl} alt="news" fill={true} unoptimized={true} />
+        </div> */}
+        <div className="flex flex-col w-full gap-2">
           <h1
             className="text-lg font-semibold"
             style={{
