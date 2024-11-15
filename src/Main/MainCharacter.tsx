@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { decode } from "js-base64";
 import { API_BASE_URL } from "../Constant/constant";
 
-type UserData = {
+export type UserData = {
   userId: number;
   name: string;
   money: number;
