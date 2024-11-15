@@ -1,22 +1,75 @@
+"use client";
+
+import { API_BASE_URL } from "@/src/Constant/constant";
 import TFQuiz from "@/src/Quiz/TFQuiz";
-import React from "react";
+import { decode } from "js-base64";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
+export type QuizData = {
+  answer: "TRUE" | "FALSE";
+  createdDate: string;
+  description: string;
+  difficulty: "LO" | "MI" | "HI";
+  id: number;
+  modifiedDate: string;
+  question: string;
+};
 function Page() {
-  // 퀴즈 데이터 가져오기
+  const router = useRouter();
+  const [quizData, setQuizData] = useState<QuizData>({
+    answer: "TRUE",
+    createdDate: "",
+    description: "",
+    difficulty: "LO",
+    id: 0,
+    modifiedDate: "",
+    question: "",
+  });
+  const [userXP, setUserXP] = useState<number>(0);
+  useEffect(() => {
+    // 퀴즈 데이터 가져오기
+    const LOGIN_INFO =
+      localStorage.getItem("LOGIN_INFO") || router.push("/sign-in");
+    if (LOGIN_INFO) {
+      const accessToken = decode(JSON.parse(LOGIN_INFO).accessToken);
+      fetch(`${API_BASE_URL}/quiz`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code === "COMMON200") {
+            console.log(data);
+            setQuizData(data.result);
+          } else if (data.code === "COMMON500") {
+            alert("로그인 후 이용해주세요.");
+            router.push("/sign-in");
+          }
+        });
+      fetch(`${API_BASE_URL}/user/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code === "COMMON200") {
+            setUserXP(data.result.xp);
+          } else if (data.code === "COMMON500") {
+            alert("로그인 후 이용해주세요.");
+            router.push("/sign-in");
+          }
+        });
+    }
+  }, []);
 
-  const sampleQuiz = {
-    id: 13,
-    difficulty: "LO" as "HI" | "MI" | "LO",
-    question:
-      "DTI(총부채상환비율)는 연 소득 대비 금융비용 부담률을 나타내는 지표입니다.",
-    answer: "TRUE" as "TRUE" | "FALSE",
-    description:
-      "DTI(Debt to Income : 총부채상환비율)는 연 소득 대비 금융비용 부담률을 의미합니다. 소득과 비교한 대출금 수준을 판단하는 지표예요. DTI는 ‘나의 연소 득’에서 ‘주택담보대출의 원금 상환과 이자, 다른 대출의 이자로 나가는 금액’이 차지하는 비중으로 구합니다. 내가 가진 모든 대출의 원리금 상환금액을 합쳐 따지는 DSR보다는 유한 기준입니다.",
-    quizDoneList: [],
-  };
   return (
     <>
-      <TFQuiz quiz={sampleQuiz} />
+      <TFQuiz quiz={quizData} currentXP={userXP} />
     </>
   );
 }
